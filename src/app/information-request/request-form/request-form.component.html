@@ -1,0 +1,95 @@
+<div class="container-fluid">
+  <div class="card-container-header">
+    <h4 mat-dialog-title>GESTIÓN NUEVA SOLICITUD</h4>
+  </div>
+
+  <div mat-dialog-content>
+    <form [formGroup]="requestForm">
+      <mat-form-field>
+        <mat-label>Departamento</mat-label>
+        <mat-select formControlName="DepartmentId" required="true">
+          <mat-option
+            *ngFor="let dep of departaments; let i = index"
+            [value]="dep.Id"
+          >
+            {{ dep.DepartmentName }} - {{ dep.Email }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Tipo - clasificación</mat-label>
+        <input
+          matInput
+          required
+          placeholder="Tipo - clasificación"
+          formControlName="Type"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Descripción</mat-label>
+        <textarea
+          matInput
+          placeholder="Escriba los detalles de la solicitud..."
+          formControlName="Description"
+          required="true"
+          matTextareaAutosize
+          rows="8"
+        ></textarea>
+      </mat-form-field>
+      <div class="custom-file-container justify-content-end">
+        <span class="selected-file-name">{{ attachFileName }}</span>
+        <button
+          *ngIf="attachFileName"
+          mat-icon-button
+          class="remove-file-button"
+          [disabled]="loading"
+          (click)="removeFile()"
+        >
+          <mat-icon class="remove-file-icon">cancel</mat-icon>
+        </button>
+        <mat-icon class="custom-file-icon" (click)="openFileInput()"
+          >attach_file</mat-icon
+        >
+        <input
+          #fileInput
+          type="file"
+          (change)="onFileSelected(fileInput.files)"
+          class="custom-file-input"
+          formControlName="AttachFile"
+        />
+
+        <span class="custom-file-button" (click)="openFileInput()"
+          >Seleccionar Archivo</span
+        >
+      </div>
+    </form>
+  </div>
+</div>
+<div mat-dialog-actions class="justify-content-end">
+  <mat-progress-bar
+    *ngIf="loading"
+    card-header
+    mode="indeterminate"
+    color="warn"
+  ></mat-progress-bar>
+  <div class="row col-md-4 justify-content-end">
+    <button
+      mat-raised-button
+      type="submit"
+      class="btn btn-danger"
+      [disabled]="loading || requestForm.invalid"
+      (click)="insertNewRequest()"
+    >
+      Guardar
+    </button>
+    <button
+      mat-raised-button
+      type="submit"
+      class="btn"
+      [disabled]="loading"
+      (click)="closeForm()"
+    >
+      Cancelar
+    </button>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<div class="main-content center-container">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 mx-auto">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">INICIO DE SESIÓN</h4>
+          </div>
+          <div class="card-header" *ngIf="loading">
+            <mat-progress-bar
+              mode="indeterminate"
+              color="warn"
+            ></mat-progress-bar>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="loginForm">
+              <div class="col-md-12">
+                <mat-form-field>
+                  <mat-label>Usuario:</mat-label>
+                  <input
+                    matInput
+                    required
+                    placeholder="ej. prueba@prueba.com"
+                    formControlName="userName"
+                  />
+                  <mat-hint
+                    >{{ usernameControl?.value?.length || 0 }} / 30</mat-hint
+                  >
+                  <mat-error *ngIf="usernameControl?.invalid"
+                    >Obligatorio **</mat-error
+                  >
+                </mat-form-field>
+              </div>
+              <div class="col-md-12">
+                <mat-form-field>
+                  <mat-label>Contraseña:</mat-label>
+                  <input
+                    matInput
+                    required
+                    type="password"
+                    placeholder="*******"
+                    formControlName="password"
+                  />
+                  <mat-hint
+                    >{{ passwordControl?.value?.length || 0 }} / 12</mat-hint
+                  >
+                  <mat-error *ngIf="passwordControl?.invalid"
+                    >Obligatorio **</mat-error
+                  >
+                </mat-form-field>
+              </div>
+              <button
+                mat-raised-button
+                type="submit"
+                class="btn btn-danger pull-right"
+                [disabled]="!loginForm.valid || loading"
+                (click)="login()"
+              >
+                Validar Usuario
+              </button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

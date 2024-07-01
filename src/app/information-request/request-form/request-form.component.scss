@@ -1,0 +1,51 @@
+/* styles.css */
+
+/* Estilo para el contenedor del campo de archivo personalizado */
+.custom-file-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Estilo para el campo de archivo personalizado */
+.custom-file-input {
+  display: none; /* Oculta el campo de archivo nativo */
+}
+
+/* Estilo para el icono (puedes usar un ícono de tu elección) */
+.custom-file-icon {
+  font-size: 24px;
+  margin-right: 8px; /* Ajusta según tus necesidades */
+  cursor: pointer;
+}
+
+/* Estilo para el botón de selección */
+.custom-file-button {
+  cursor: pointer;
+  margin-right: 8px; /* Ajusta según tus necesidades */
+}
+
+/* Estilo para mostrar el nombre del archivo seleccionado */
+.selected-file-name {
+  margin-left: 8px; /* Ajusta según tus necesidades */
+  font-size: 14px; /* Ajusta según tus necesidades */
+  color: #333; /* Ajusta según tus necesidades */
+}
+
+.remove-file-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Ajusta el color y tamaño del icono según tus necesidades */
+.remove-file-icon {
+  color: #f00; /* Color rojo, ajusta según tus necesidades */
+  font-size: 20px; /* Ajusta según tus necesidades */
+}
+
+.card-container-header {
+  background-color: #f44336;
+  color: white;
+  border-radius: 2px;
+  padding-left: 2%;
+}

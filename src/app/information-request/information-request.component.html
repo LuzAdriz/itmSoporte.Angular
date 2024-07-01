@@ -1,0 +1,87 @@
+<div class="main-content center-container col-md-12">
+  <div class="container-fluid">
+    <div class="card col-md-12">
+      <div class="card-header card-header-danger">
+        <h4 class="card-title">GESTIÓN SOLICITUDES</h4>
+      </div>
+
+      <div class="card-body">
+        <div class="row justify-content-end">
+          <button
+            mat-raised-button
+            class="btn"
+            [disabled]="loading"
+            (click)="refreshCardsTable()"
+          >
+            <mat-icon>sync</mat-icon>
+          </button>
+          <button
+            mat-raised-button
+            class="btn btn-danger"
+            [disabled]="loading"
+            (click)="NewRequestForm()"
+          >
+            Nuevo
+          </button>
+        </div>
+        <div class="row">
+          <mat-card-content>
+            <div class="card-container">
+              <mat-card *ngFor="let card of cards" class="card-container-item">
+                <mat-card-header *ngIf="!loading">
+                  <mat-card-title
+                    ><strong># {{ card?.Id }}</strong>
+                  </mat-card-title>
+                </mat-card-header>
+                <mat-card-content *ngIf="!loading">
+                  <strong>Estado: </strong> {{ card?.StatusDescription }}
+                  <br />
+                  <strong>Fecha: </strong> {{ formatDate(card?.CreatedAt) }}
+                  <br />
+                  <strong>Tipo: </strong> {{ card?.Type }}
+                  <br />
+                  <strong>Responsable: </strong>
+                  {{ card?.DepartmentDescription }}
+                  <br />
+                  <strong>Solicitud: </strong>{{ truncate(card?.Description) }}
+                </mat-card-content>
+                <mat-card-content *ngIf="loading">
+                  <mat-progress-bar
+                    *ngIf="loading"
+                    mode="indeterminate"
+                    color="warn"
+                  ></mat-progress-bar>
+                </mat-card-content>
+                <mat-card-actions class="button-row">
+                  <button
+                    mat-raised-button
+                    class="btn btn-danger"
+                    [disabled]="loading || !card.Id"
+                    (click)="detailsRequestForm(card)"
+                  >
+                    Detalles
+                  </button>
+                  <button
+                    mat-raised-button
+                    class="btn"
+                    [disabled]="loading || card.Status === 'C' || !card.Id"
+                    (click)="closeRequest(card)"
+                  >
+                    Cerrar
+                  </button>
+                </mat-card-actions>
+              </mat-card>
+            </div>
+            <mat-paginator
+              showFirstLastButtons="true"
+              [length]="totalItems"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="[8, 12, 16, 20]"
+              (page)="onPageChange($event)"
+            ></mat-paginator>
+          </mat-card-content>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

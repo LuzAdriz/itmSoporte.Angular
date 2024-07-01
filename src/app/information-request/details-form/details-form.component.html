@@ -1,0 +1,158 @@
+<!-- information-request-dialog.component.html -->
+<!-- Título General -->
+<div class="col-12">
+  <div class="card-container-header">
+    <h4>Detalles Solicitud # {{ request.Id }}</h4>
+  </div>
+</div>
+
+<mat-dialog-content class="container">
+  <div class="row">
+    <!-- Columna 1 (75%) - Detalles -->
+    <div class="column col-md-8 details-column">
+      <!-- Nueva Respuesta - Expansion Panel -->
+      <mat-expansion-panel *ngIf="!isCloseRequest" [expanded]="showNewDetails">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Nueva Respuesta </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-progress-bar
+          *ngIf="loading"
+          mode="indeterminate"
+          color="warn"
+        ></mat-progress-bar>
+        <br />
+        <!-- Formulario de Nueva Respuesta -->
+        <div class="new-response-form">
+          <form [formGroup]="detailsForm">
+            <div class="col-md-12">
+              <mat-form-field>
+                <mat-label>Detalle Respuesta</mat-label>
+                <textarea
+                  matInput
+                  placeholder="Escriba detalladamente la respuesta....."
+                  formControlName="Description"
+                  required="true"
+                  matTextareaAutosize
+                  rows="5"
+                ></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-md-12">
+              <div class="custom-file-container justify-content-end">
+                <span class="selected-file-name">{{ attachFileName }}</span>
+                <button
+                  *ngIf="attachFileName"
+                  mat-icon-button
+                  class="remove-file-button"
+                  [disabled]="loading"
+                  (click)="removeFile()"
+                >
+                  <mat-icon class="remove-file-icon">cancel</mat-icon>
+                </button>
+                <mat-icon class="custom-file-icon" (click)="openFileInput()"
+                  >attach_file</mat-icon
+                >
+                <input
+                  #fileInput
+                  type="file"
+                  class="custom-file-input"
+                  formControlName="AttachFile"
+                  (change)="onFileSelected(fileInput.files)"
+                />
+                <span class="custom-file-button" (click)="openFileInput()"
+                  >Seleccionar Archivo</span
+                >
+              </div>
+            </div>
+          </form>
+          <button
+            mat-raised-button
+            type="submit"
+            class="btn btn-danger"
+            [disabled]="loading || detailsForm.invalid"
+            (click)="insertNewDetail()"
+          >
+            Enviar
+          </button>
+          <button mat-raised-button class="btn" [disabled]="loading" (click)="resetForm()">
+            Limpiar
+          </button>
+        </div>
+      </mat-expansion-panel>
+      <br />
+      <!-- Detalles existentes -->
+      <ng-container *ngFor="let detail of details; let last = last">
+        <div class="detail-container">
+          <div class="row">
+            <div class="column col-md-8">
+              <mat-icon class="icon-container">calendar_month</mat-icon>
+              {{ formatDate(detail.CreatedAt) }}
+              <br />
+              <mat-icon class="icon-container">person</mat-icon>
+              <span *ngIf="detail.CreateBy"> {{ detail.CreateBy }}</span>
+            </div>
+            <div
+              *ngIf="detail.AttachFile"
+              class="column col-md-4 justify-content-end"
+            >
+              <span class="selected-file-name"> Descargar Archivo </span>
+              <mat-icon
+                class="custom-file-icon"
+                (click)="downloadFile(detail.AttachFile)"
+              >
+                download
+              </mat-icon>
+            </div>
+            <div class="col-md-12 p-2">
+              <hr />
+              {{ detail.Description }}
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <!-- Columna 2 (25%) - Encabezado -->
+    <div class="column col-md-4">
+      <!-- Encabezado -->
+      <div class="card-container">
+        <div class="header-container">
+          <div>
+            <h5>
+              {{ formatDate(request.CreatedAt) }}
+              <span class="download-file-name"> Descargar </span>
+              <mat-icon
+                class="custom-file-icon-ligth"
+                (click)="downloadFile(request.AttachFile)"
+              >
+                download
+              </mat-icon>
+            </h5>
+          </div>
+          <p>
+            <strong>Usuario : </strong>
+            {{ request.CreatedBy }}
+          </p>
+          <p>
+            <strong>Tipo : </strong>
+            {{ request.Type }}
+          </p>
+          <p>
+            <strong>Departamento : </strong>
+            {{ request.DepartmentDescription }}
+            <br />
+            {{ request.DepartmentEmail }}
+          </p>
+          <p>
+            <strong>Detalle : </strong>
+            <br />
+            {{ request.Description }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<div mat-dialog-actions style="justify-content: flex-end">
+  <button mat-icon-button mat-dialog-close class="btn">Cancelar</button>
+</div>

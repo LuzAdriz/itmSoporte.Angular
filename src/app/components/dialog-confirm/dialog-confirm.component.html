@@ -1,0 +1,28 @@
+<div class="card-body">
+  <div class="row">
+    <h4>{{ message }}</h4>
+  </div>
+  <br />
+  <div class="row justify-content-center">
+    <button
+      mat-raised-button
+      class="btn btn-danger pull-center"
+      type="button"
+      (click)="onConfirmClick()"
+      tabindex="1"
+      title="Continuar"
+    >
+      Confirmar
+    </button>
+    <button
+      mat-raised-button
+      class="btn pull-center"
+      type="button"
+      (click)="onCancelClick()"
+      tabindex="-1"
+      title="Cancelar"
+    >
+      Cancelar
+    </button>
+  </div>
+</div>

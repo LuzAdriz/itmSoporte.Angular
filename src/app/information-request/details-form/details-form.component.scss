@@ -1,0 +1,181 @@
+/* styles.css (o tu archivo de estilos preferido) */
+
+/* Estilo del panel de expansión */
+.mat-expansion-panel {
+  position: sticky;
+  top: 0; /* Ajusta según sea necesario para la posición deseada */
+  z-index: 1000; /* Ajusta según sea necesario para evitar superposiciones con otros elementos */
+}
+
+/* Estilo del encabezado del panel de expansión */
+.mat-expansion-panel-header {
+  background-color: #999999 !important;
+}
+
+/* Estilo del título del encabezado del panel de expansión */
+.mat-expansion-panel-header .mat-panel-title {
+  color: white !important;
+}
+
+/* Estilo del encabezado del panel de expansión al pasar el mouse sobre él */
+.mat-expansion-panel-header:hover {
+  background-color: #999999 !important; /* Mantén el color al pasar el mouse */
+}
+
+/* Estilo del título del encabezado del panel de expansión al pasar el mouse sobre él */
+.mat-expansion-panel-header:hover .mat-panel-title {
+  color: white !important; /* Mantén el color del texto al pasar el mouse */
+}
+
+.mat-expansion-panel-header .mat-expansion-panel-header-title,
+.mat-expansion-panel-header .mat-expansion-panel-header-description {
+  color: white !important;
+}
+
+/* Estilo del texto dentro del panel de expansión */
+.mat-expansion-panel-content {
+  color: white !important;
+}
+
+/* Estilo del panel de cierre */
+.close-icon-header {
+  position: absolute;
+  top: 10px; /* Ajusta la distancia desde la parte superior */
+  right: 10px; /* Ajusta la distancia desde la parte derecha */
+  cursor: pointer;
+  color: black; /* Cambia el color del icono de cierre según tus preferencias */
+}
+
+/* Estilo del panel principal */
+.container {
+  margin-top: 20px;
+}
+
+/* Estilo del contenedor de detalles */
+.details-column {
+  max-height: 550px; /* Ajusta la altura máxima según tus necesidades */
+  overflow-y: auto;
+}
+
+/* Estilo del ícono */
+.icon-container {
+  vertical-align: middle;
+  color: #999999; /* Cambia el color del icono según tus preferencias */
+}
+
+/* Estilo del texto */
+.text-container {
+  vertical-align: middle;
+  color: #999999; /* Cambia el color del texto según tus preferencias */
+}
+
+/* Estilo de la línea separadora */
+.detail-container hr {
+  border: none;
+  height: 1px;
+  border-top: 1px dotted #999999; /* Utilizamos 'border-top' en lugar de 'background-color' */
+  margin: 10px 0; /* Espaciado superior e inferior */
+}
+
+/* Estilo del contenedor de detalles */
+.detail-container {
+  border: 1px solid #000; /* Borde negro */
+  border-radius: 8px; /* Bordes redondeados */
+  padding: 15px 20px; /* Espaciado interno con padding-right de 20px */
+  margin-bottom: 5px;
+  max-width: 100%; /* Evita el desbordamiento horizontal */
+  overflow: hidden; /* Oculta cualquier contenido que se desborde */
+}
+
+/* Estilo del ícono de Material */
+.mat-icon {
+  color: #999999; /* Cambia el color del ícono según tus preferencias */
+}
+
+.mat-icon-buttom {
+  color: white !important; /* Cambia el color del ícono según tus preferencias */
+}
+
+/* Estilo del contenedor de tarjeta */
+.card-container {
+  background-color: #999999;
+  color: white;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 100%; /* Evita el desbordamiento horizontal */
+  overflow: hidden; /* Oculta cualquier contenido que se desborde */
+}
+
+/* Estilo del contenedor de encabezado de tarjeta */
+.card-container-header {
+  background-color: #f44336;
+  color: white;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.card-container p {
+  overflow: hidden; /* Oculta cualquier contenido que se desborde */
+  white-space: pre-line; /* Permite saltos de línea */
+}
+
+/* Estilo del ícono de cierre en el encabezado de tarjeta */
+.close-icon-header {
+  color: white; /* Cambia el color del ícono de cierre según tus preferencias */
+}
+
+/* Estilo para el contenedor del campo de archivo personalizado */
+.custom-file-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Estilo para el campo de archivo personalizado */
+.custom-file-input {
+  display: none; /* Oculta el campo de archivo nativo */
+}
+
+/* Estilo para el icono (puedes usar un ícono de tu elección) */
+.custom-file-icon {
+  font-size: 24px;
+  margin-right: 8px; /* Ajusta según tus necesidades */
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.custom-file-icon-ligth {
+  color: white;
+  font-size: 24px;
+  margin-right: 8px; /* Ajusta según tus necesidades */
+  cursor: pointer;
+  vertical-align: middle;
+  align-items: end;
+  justify-content: end;
+}
+
+/* Estilo para el botón de selección */
+.custom-file-button {
+  cursor: pointer;
+  margin-right: 8px; /* Ajusta según tus necesidades */
+}
+
+/* Estilo para mostrar el nombre del archivo seleccionado */
+.selected-file-name {
+  margin-left: 8px; /* Ajusta según tus necesidades */
+  font-size: 14px; /* Ajusta según tus necesidades */
+  color: #333; /* Ajusta según tus necesidades */
+}
+.download-file-name {
+  margin-left: 8px; /* Ajusta según tus necesidades */
+  font-size: 14px; /* Ajusta según tus necesidades */
+  color: white; /* Ajusta según tus necesidades */
+  align-items: end;
+  justify-content: end;
+}
+
+.remove-file-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #f44336 !important;
+}
